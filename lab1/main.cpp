@@ -1,6 +1,7 @@
 #include <iostream>
+#include <unistd.h> // validacion de existencia de archivo
 // incluyo clases
-#include <fstream>
+#include <fstream> // manejo de archivos
 #include "BlankCount.h"
 #include "CommCount.h"
 using namespace std;
@@ -10,11 +11,20 @@ int main(){
     cin >> name;
     BlankCount bc(name);
     CommCount cc(name);
-    FILE *file;
-    if (!(file = fopen("archivo1.txt", "r"))) {
-        fclose(file);
-        exit(1);
+    const char * c = name.c_str();
+    if (access( c, F_OK ) != 0){
+      cout << "El archivo no existe" << endl;
+      return 1;
     }
+
+    char ch;
+    FILE *f = fopen(c, "r");
+    if(fscanf(f,"%c",&ch)==EOF)
+    {
+        cout << "El archivo está vacio" << endl;
+        return 1;
+    }
+    fclose(f);
 
 
     int empty=0, code=0, comm=0, total=0;
