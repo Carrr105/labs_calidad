@@ -1,4 +1,6 @@
 #include <fstream>
+#include <stdlib.h>
+#include <stdio.h>  
 using namespace std;
 class BlankCount{
     private:
@@ -15,24 +17,27 @@ class BlankCount{
 
     int CountEmptylines(){
         int total = 0;
-        char caracter='\n';
-        bool isEmptyCurrently = true;
+        bool isLast = true;
         FILE* file = fopen(name.c_str(), "r");
         char buf[1000], *pointer;
         while (!feof(file)) {
             fgets(buf, 1000, file);
             pointer=buf;
             while (*pointer== ' ' || *pointer == '\t'){
+                isLast=false;
                 pointer++; // sigue recorriendo el archivo
             }
             if (*pointer=='\r'){
                 pointer++;
             }
             if (*pointer=='\n'){
+                isLast=true;
                 total++;
             }
         }
+        char charFinal = pointer[strlen(pointer)-1]; //obtengo el ultimo caracter
+        if (charFinal=='\n' || !isLast )  total++; // checo si hay una linea extra
         fclose(file);
-        return total+1; // falta contar la ultima linea, se agrega
+        return total;
     }
 };

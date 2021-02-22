@@ -8,6 +8,7 @@ using namespace std;
 
 int main(){
     string name;
+    cout << "Introduce nombre de archivo: ";
     cin >> name;
     BlankCount bc(name);
     CommCount cc(name);
