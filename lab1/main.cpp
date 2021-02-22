@@ -1,5 +1,6 @@
 #include <iostream>
 // incluyo clases
+#include <fstream>
 #include "BlankCount.h"
 #include "CommCount.h"
 using namespace std;
@@ -9,6 +10,13 @@ int main(){
     cin >> name;
     BlankCount bc(name);
     CommCount cc(name);
+    FILE *file;
+    if (!(file = fopen("archivo1.txt", "r"))) {
+        fclose(file);
+        exit(1);
+    }
+
+
     int empty=0, code=0, comm=0, total=0;
     empty = bc.CountEmptylines();
     comm = cc.CountCommlines();

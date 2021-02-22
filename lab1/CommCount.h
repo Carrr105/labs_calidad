@@ -21,7 +21,6 @@ class CommCount{
         string str;
         ifstream file (name);
         while (getline(file,str)){
-            cout << str << endl;
             if (str.find("/*") != string::npos){
                 comTotal++;
                 while (getline(file,str) && str.find("*/") == string::npos){
