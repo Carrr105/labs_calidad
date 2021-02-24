@@ -25,6 +25,12 @@ int main(){
         cout << "El archivo está vacio" << endl;
         return 1;
     }
+    
+    if(name.substr(name.find_last_of(".") + 1) != "txt"){
+      cout << "El archivo no es .txt" << endl;
+      return 1;
+    }
+
     fclose(f);
 
 
