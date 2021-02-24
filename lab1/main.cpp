@@ -1,3 +1,5 @@
+// Carlos Gerardo Herrera Cortina  A00821946
+// Programa 1.
 #include <iostream>
 #include <unistd.h> // validacion de existencia de archivo
 // incluyo clases
