@@ -6,15 +6,34 @@ class CommCount{
     private:
     string name;
     int total;
+    int iCount;
+    int mCount;
+    int baseCount;
+    int baseCountGlobal;
+    int deletedCount;
+    int deletedCountGlobal;
     
     public: 
     CommCount(){
         name = "";
         total=0;
+        iCount=0;
+        mCount=0;
+        baseCount=0;
+        baseCountGlobal=0;
+        deletedCount=0;
+        deletedCountGlobal=0;
     };
     
     CommCount(string n){
         name = n;
+        total=0;
+        iCount=0;
+        mCount=0;
+        baseCount=0;
+        baseCountGlobal=0;
+        deletedCount=0;
+        deletedCountGlobal=0;
     }
 
     int CountCommlines(){
@@ -26,11 +45,11 @@ class CommCount{
         while (getline(file,str)){
             if (str.find("/*") != string::npos){
                 comTotal++;
-                cout << str << endl;   
+               // cout << str << endl;   
                 while (str.find("*/") == string::npos){
                     if(count!=0){
                     comTotal++;
-                    cout << str << endl;
+            //        cout << str << endl;
                     sameLine=false;
                     }
                     getline(file,str) ;
@@ -40,7 +59,7 @@ class CommCount{
                 count=0;
                 if (!sameLine){
                 comTotal++;
-                cout << str << endl;
+       //         cout << str << endl;
                 sameLine=true;
                 }
 
@@ -48,7 +67,7 @@ class CommCount{
             
             else if ( str.find("*/") != string::npos){
                 comTotal++;
-                                cout << str << endl;
+                             //   cout << str << endl;
 
            } 
             else if ( str.find("//") != string::npos){
@@ -58,9 +77,40 @@ class CommCount{
                 && (regex_search(str,s,e ))
                 ){
                 comTotal++;
-                                cout << str << endl;
+                                //cout << str << endl;
 
                 }
+                if (str.find("//.i") != string::npos){
+                    //cout << str << endl;
+                    iCount++;
+                }
+                if (str.find("//.m") != string::npos){
+                    //cout << str << endl;
+                    mCount++;
+                }
+                if (str.find("//.b=") != string::npos){
+                    string numStr = "";
+                    size_t numContainer = str.find("//.b=")+5;
+                    while (isdigit(str[numContainer])) {
+				        numStr.push_back(str[numContainer]);
+				        numContainer++;
+			        }
+                    
+                    baseCount = stoi(numStr);
+                    baseCountGlobal += baseCount;
+                }
+                if (str.find("//.d=") != string::npos){
+                    string numStr = "";
+                    size_t numContainer = str.find("//.d=")+5;
+                    while (isdigit(str[numContainer])) {
+				        numStr.push_back(str[numContainer]);
+				        numContainer++;
+			        }
+                    
+                    deletedCount = stoi(numStr);
+                    deletedCountGlobal += deletedCount;
+                }
+
             }
      }
      file.close();
@@ -77,4 +127,27 @@ class CommCount{
     file.close();
     return total;
     }
+
+    int getiCount(){
+        return iCount;
+    }
+
+    int getmCount(){
+        return mCount;
+    }
+
+    int getbCount(){
+        return baseCountGlobal;
+    }
+
+    int getdCount(){
+        return deletedCountGlobal;
+    }
+
+    int getaCount(int code){
+        return code-baseCountGlobal+deletedCountGlobal;
+    }
+
+
+
 };

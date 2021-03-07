@@ -10,8 +10,16 @@
 using namespace std;
 
 int main(){
+    int numArch=0;
+    cout << "Introduce numero de archivos para leer: ";
+    cin >> numArch;
+    if (numArch<=0){
+      cout << "Nada que leer" << endl;
+      return 1;
+    }
     string name;
-    cout << "Introduce nombre de archivo: ";
+    cout << "Introduce nombre de archivos: " << endl;
+
     cin >> name;
     NewBlank bc(name);
     CommCount cc(name);
@@ -48,6 +56,16 @@ int main(){
     cout << "Cantidad de líneas en blanco: " << empty << endl;
     cout << "Cantidad de líneas con comentarios: " <<  comm << endl;
     cout << "Cantidad de líneas con código: " << code << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << "T: " << code << endl;
+    cout << "I: " << cc.getiCount() << endl;
+    cout << "B: " << cc.getbCount() << endl;
+    cout << "D: " << cc.getdCount() << endl;
+    cout << "M: " << cc.getmCount() << endl;
+    cout << "A: " << cc.getaCount(code) << endl;
+
+    //si m = 0, es reusada
+    // si b= 0, es nueva
     cout << "------------------------------------------------" << endl;
     cout << "Cantidad total de líneas: " <<  total << endl;
     return 0; 
