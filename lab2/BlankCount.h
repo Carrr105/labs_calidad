@@ -17,26 +17,27 @@ class BlankCount{
 
     int CountEmptylines(){
         int total = 0;
-        bool isLast = true;
+      //  bool isLast = true;
         FILE* file = fopen(name.c_str(), "r");
         char buf[1000], *pointer;
         while (!feof(file)) {
             fgets(buf, 1000, file);
             pointer=buf;
             while (*pointer== ' ' || *pointer == '\t'){
-                isLast=false;
+              //  isLast=false;
                 pointer++; // sigue recorriendo el archivo
             }
             if (*pointer=='\r'){
                 pointer++;
             }
             if (*pointer=='\n'){
-                isLast=true;
+            //    isLast=true;
                 total++;
+                cout << pointer << endl;
             }
         }
         char charFinal = pointer[strlen(pointer)-1]; //obtengo el ultimo caracter
-        if (charFinal=='\n' || !isLast )  total++; // checo si hay una linea extra
+        if (charFinal=='\n' /*|| !isLast */)  total++; // checo si hay una linea extra
         fclose(file);
         return total;
     }

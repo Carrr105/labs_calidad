@@ -1,18 +1,19 @@
 // Carlos Gerardo Herrera Cortina  A00821946
-// Programa 1.
+// Programa 2.
 #include <iostream>
 #include <unistd.h> // validacion de existencia de archivo
 // incluyo clases
 #include <fstream> // manejo de archivos
 #include "BlankCount.h"
 #include "CommCount.h"
+#include "NewBlank.h"
 using namespace std;
 
 int main(){
     string name;
     cout << "Introduce nombre de archivo: ";
     cin >> name;
-    BlankCount bc(name);
+    NewBlank bc(name);
     CommCount cc(name);
     const char * c = name.c_str();
     if (access( c, F_OK ) != 0){
@@ -27,8 +28,9 @@ int main(){
         cout << "El archivo está vacio" << endl;
         return 1;
     }
-    
-    if(name.substr(name.find_last_of(".") + 1) != "txt"){
+    //cout << name << endl;
+    if(name.substr(name.find_last_of(".") + 1) != "txt"  && name.substr(name.find_last_of(".") + 1) != "src"
+    && name.substr(name.find_last_of(".") + 1) != "cpp" && name.substr(name.find_last_of(".") + 1) != "c"){
       cout << "El archivo no es .txt" << endl;
       return 1;
     }
@@ -48,5 +50,5 @@ int main(){
     cout << "Cantidad de líneas con código: " << code << endl;
     cout << "------------------------------------------------" << endl;
     cout << "Cantidad total de líneas: " <<  total << endl;
-    return 0;
+    return 0; 
 }

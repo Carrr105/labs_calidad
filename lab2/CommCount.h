@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <regex>
 using namespace std;
 class CommCount{
     private:
@@ -20,19 +21,46 @@ class CommCount{
         int comTotal = 0;
         string str;
         ifstream file (name);
+        bool sameLine= true;
+        int count=0;
         while (getline(file,str)){
             if (str.find("/*") != string::npos){
                 comTotal++;
-                while (getline(file,str) && str.find("*/") == string::npos){
+                cout << str << endl;   
+                while (str.find("*/") == string::npos){
+                    if(count!=0){
                     comTotal++;
+                    cout << str << endl;
+                    sameLine=false;
+                    }
+                    getline(file,str) ;
+                    count++;
+
                 }
+                count=0;
+                if (!sameLine){
                 comTotal++;
+                cout << str << endl;
+                sameLine=true;
+                }
+
             }
+            
             else if ( str.find("*/") != string::npos){
                 comTotal++;
-            }
+                                cout << str << endl;
+
+           } 
             else if ( str.find("//") != string::npos){
+                smatch s;
+                regex e ("\\b("")([^//]*)");
+                if ( (str.find(";") == string::npos)
+                && (regex_search(str,s,e ))
+                ){
                 comTotal++;
+                                cout << str << endl;
+
+                }
             }
      }
      file.close();
