@@ -71,8 +71,9 @@ class CommCount{
 
            } 
             else if ( str.find("//") != string::npos){
-                smatch s;
+                smatch s, sm;
                 regex e ("\\b("")([^//]*)");
+                regex m (".*\/\/.m.*;");
                 if ( (str.find(";") == string::npos)
                 && (regex_search(str,s,e ))
                 ){
@@ -84,7 +85,7 @@ class CommCount{
                     //cout << str << endl;
                     iCount++;
                 }
-                if (str.find("//.m") != string::npos){
+                if (str.find("//.m") != string::npos && !(regex_search(str,sm,m ))){
                     //cout << str << endl;
                     mCount++;
                 }
