@@ -1,3 +1,4 @@
+//.b=43
 #include <fstream>
 #include <iostream>
 #include <regex>
@@ -14,6 +15,7 @@ class CommCount{
     int deletedCountGlobal;
     
     public: 
+    //.i
     CommCount(){
         name = "";
         total=0;
@@ -24,7 +26,7 @@ class CommCount{
         deletedCount=0;
         deletedCountGlobal=0;
     };
-    
+    //.i
     CommCount(string n){
         name = n;
         total=0;
@@ -36,6 +38,13 @@ class CommCount{
         deletedCountGlobal=0;
     }
 
+    // instruccion usada para quitar warnings de regex
+    // se usa regex para detectar etiquetas dentro de strings
+    // funciona, pero el compilador marca 2 warnings
+    // asi que por simplicidad se eliminan
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunknown-escape-sequence"
+    //.i
     int CountCommlines(){
         int comTotal = 0;
         string str;
@@ -46,7 +55,7 @@ class CommCount{
             if (str.find("/*") != string::npos){
                 comTotal++;
               //  cout << "found" << endl;   
-                while (str.find("*/") == string::npos){
+                while (str.find("*/") == string::npos){ //.m
                     if(count!=0){
                     comTotal++;
                     sameLine=false;
@@ -71,6 +80,7 @@ class CommCount{
 
            } 
             else if ( str.find("//") != string::npos){
+                //.d=1
                 smatch s, sm;
                 regex e ("\\b("")([^//]*)");
                 regex m (".*\/\/.m.*;");
@@ -97,9 +107,13 @@ class CommCount{
 				        numStr.push_back(str[numContainer]);
 				        numContainer++;
 			        }
-                    
-                    baseCount = stoi(numStr);
-                    baseCountGlobal += baseCount;
+                    try {
+                        baseCount = stoi(numStr);
+                        baseCountGlobal += baseCount;
+                    }
+                    catch(exception e){
+                       
+                    }
                 }
                 if (str.find("//.d=") != string::npos){
                     string numStr = "";
@@ -108,8 +122,13 @@ class CommCount{
 				        numStr.push_back(str[numContainer]);
 				        numContainer++;
 			        }
-                    deletedCount = stoi(numStr);
-                    deletedCountGlobal += deletedCount;
+                    try {
+                        deletedCount = stoi(numStr);
+                        deletedCountGlobal += deletedCount;
+                    }
+                    catch(exception e){
+
+                    }
                 }
 
             }
@@ -117,7 +136,10 @@ class CommCount{
      file.close();
         return comTotal;
     }
+    
+    #pragma GCC diagnostic pop
 
+    //.i
     int getTotal(){
         string str;
         ifstream file (name);
@@ -128,27 +150,25 @@ class CommCount{
     file.close();
     return total;
     }
-
+    //.i
     int getiCount(){
         return iCount;
     }
-
+    //.i
     int getmCount(){
         return mCount;
     }
-
+    //.i
     int getbCount(){
         return baseCountGlobal;
     }
-
+    //.i
     int getdCount(){
         return deletedCountGlobal;
     }
-
+    //.i
     int getaCount(int code){
         return code-baseCountGlobal+deletedCountGlobal;
     }
-
-
 
 };

@@ -15,10 +15,11 @@ class FileCount{
     int a;
     
     public: 
+    //.i
     FileCount(){
         name = "";
     };
-    
+    //.i
     FileCount(string n, int tA, int iA, int bA, int dA, int mA, int aA){
         name = n;
         b = bA;
@@ -28,7 +29,7 @@ class FileCount{
         d = dA;
         a = aA;
     }
-
+    //.i
     int getType(){
         if (b>0 &&(m>0 || d>0 || a>0)){
             return 0; // base
@@ -42,26 +43,32 @@ class FileCount{
         return -1; // error
     }
 
+    //.i
     int getI(){
         return i;
     }
 
+    //.i
     int getB(){
         return b;
     }
 
+    //.i
     int getT(){
         return t;
     }
 
+    //.i
     int getM(){
         return m;
     }
 
+    //.i
     int getD(){
         return d;
     }
 
+    //.i
     int getA(){
         return a;
     }

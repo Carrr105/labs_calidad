@@ -1,10 +1,12 @@
 CLASES BASE: 
-   Cuenta: T=81, I=2, B=38, D=12, M=2, A=55
-   Cliente: T=43, I=4, B=21, D=10, M=5, A=32
+   main: T=216, I=0, B=41, D=12, M=2, A=187
+   CommCount: T=134, I=10, B=43, D=1, M=1, A=92
 ------------------------------------------------
 CLASES NUEVAS: 
-   Banco: T=35, I=4
+   FileCount: T=59, I=9
+   NewBlank: T=48, I=3
 ------------------------------------------------
 CLASES REUSADAS: 
+   BlankCount: T=40, I=3, B=40
 ------------------------------------------------
-TOTAL DE LDC=159
+TOTAL DE LDC=497

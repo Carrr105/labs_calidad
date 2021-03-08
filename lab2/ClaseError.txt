@@ -1,0 +1,17 @@
+//este es el segundo archivo de la parte Banco
+	//.i
+	linea;  
+			
+	linea;  //.m
+	linea;
+             
+/* otro comentario */
+
+	linea;
+	//.d=1
+ 
+
+/* comentario de varias lineas
+   segunda parte del comentario
+   tercera parte... en esta parte se incluye una etiqueta que no se debe contar: //.m porque es comentario */    
+

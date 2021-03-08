@@ -1,0 +1,91 @@
+// parte 2
+///
+///
+/// TAREA
+
+template <class T>
+
+//.i
+void LinkedList<T> :: reverse()
+{
+    node<T> *curr = head;
+    node<T> *prev = nullptr;
+    node<T> *next = nullptr;
+    
+    while(curr != nullptr)
+    {
+        next = curr->getNext();
+        curr->setNext(prev);
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
+    
+}
+
+//.i
+template <class T>
+bool operator==(LinkedList<T> L1, LinkedList<T> L2)
+{
+    if(L1.getSize() == L2.getSize())
+    {
+        node<T> *curr = L1.head, *curr2= L2.head;
+        while (curr->getNext() != nullptr)
+        {
+            if (curr->getData()==curr2->getData()){
+                curr = curr->getNext();
+                curr2 = curr2->getNext();
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+//.i
+template <class T>
+void LinkedList<T>::operator+=(T data)
+{
+    this->addLast(data);
+}
+
+template <class T>
+void operator+=(LinkedList<T> L1, LinkedList<T> L2){
+    node <T> *curr=L1.head, *curr2=L2.head;
+    while (curr->getNext() != nullptr){
+        curr = curr->getNext();
+    }
+    while (curr2->getNext()!= nullptr){
+        curr->setNext(curr2);
+        curr=curr->getNext();
+        L1.size++;
+    }
+}
+
+//.i
+template <class T>
+LinkedList<T>::LinkedList(const LinkedList<T> &L1){
+    head=L1.head;
+    size=L1.size;
+}
+
+//.i
+template <class T>
+void LinkedList<T>::operator=(LinkedList<T> L1){
+    int tam = L1.size;
+    node<T> *curr=L1.head;
+    T temp;
+    this->borraTodo();
+    for(int i=0; i<tam; i++)
+    {
+        temp=curr->getData();
+        curr = curr->getNext();
+        add(temp, i);
+        size++;
+    }
+}
