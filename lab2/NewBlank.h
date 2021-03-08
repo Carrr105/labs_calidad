@@ -36,24 +36,28 @@ class NewBlank{
 
             if (*pointer=='\n' ){
             //    isLast=true;
+           // cout << "entro" << endl;
                 total++;
+             //   cout << pointer << endl;
             }
 
             if (*pointer=='}' || *pointer=='{'){
                 pointer++;
                 if (*pointer=='\r'){
                         total++;
+
                 }
                 if (*pointer==';'){
                     pointer++;
                     if (*pointer=='\r'){
                         total++;
+
                     }
                 }
             }
         }
-        char charFinal = pointer[strlen(pointer)-1]; //obtengo el ultimo caracter
-        if (charFinal=='\n' /*|| !isLast */)  total++; // checo si hay una linea extra
+  //      char charFinal = pointer[strlen(pointer)-1]; //obtengo el ultimo caracter
+    //    if (charFinal=='\n' /*|| !isLast */)  total++; // checo si hay una linea extra
         fclose(file);
         return total;
     }

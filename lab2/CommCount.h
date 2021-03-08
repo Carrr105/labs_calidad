@@ -48,7 +48,6 @@ class CommCount{
               //  cout << "found" << endl;   
                 while (str.find("*/") == string::npos){
                     if(count!=0){
-                    cout << str << endl;
                     comTotal++;
                     sameLine=false;
                     }
@@ -85,6 +84,7 @@ class CommCount{
                 if (str.find("//.i") != string::npos){
                     //cout << str << endl;
                     iCount++;
+                    
                 }
                 if (str.find("//.m") != string::npos && !(regex_search(str,sm,m ))){
                     //cout << str << endl;

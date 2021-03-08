@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 #include <unistd.h> // validacion de existencia de archivo
 // incluyo clases
 #include <fstream> // manejo de archivos
@@ -30,15 +31,6 @@ int main(){
     for (int i=0; i<numArch; i++){
       cin >> name;
       nombres.push_back(name);
-   /*   NewBlank bc(name);
-      CommCount cc(name);
-      empty = bc.CountEmptylines();
-      comm = cc.CountCommlines();
-      total = cc.getTotal();
-      code = total-comm-empty;
-      files.push_back(FileCount(name, code, cc.getiCount(), cc.getbCount(),
-       cc.getdCount(), cc.getmCount(), cc.getaCount(code)));*/
-
     }
 
     vector <string> nombresExt = nombres;
@@ -61,6 +53,9 @@ int main(){
 
     vector<string> unique1 = nombres;
 
+    ofstream archSalida;
+    archSalida.open("ConteoLDC.txt");
+
     //sort(unique1.begin(), unique1.end());
     unique1.erase(unique(unique1.begin(), unique1.end()), unique1.end());
 
@@ -74,6 +69,8 @@ int main(){
   bool found = false;
 
     cout << "CLASES BASE: " << endl;
+    archSalida << "CLASES BASE: " << endl;
+
 
 
     for (int i=0; i<unique1.size(); i++){
@@ -100,6 +97,12 @@ int main(){
         cout << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << 
       ", B=" << fileTest.getB() << ", D=" << fileTest.getD() << ", M="<< fileTest.getM() << ", A=" 
       << fileTest.getA() << endl;
+
+      archSalida << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << 
+      ", B=" << fileTest.getB() << ", D=" << fileTest.getD() << ", M="<< fileTest.getM() << ", A=" 
+      << fileTest.getA() << endl;
+
+
        totalLDC += fileTest.getT();
         }
         found= false;
@@ -107,9 +110,13 @@ int main(){
       iGlobal= mGlobal = tGlobal = dGlobal = bGlobal = 0;
     }
     cout << "------------------------------------------------" << endl;
+    archSalida << "------------------------------------------------" << endl;
+
 
 
     cout << "CLASES NUEVAS: " << endl;
+    archSalida << "CLASES NUEVAS: " << endl;
+
     
     for (int i=0; i<unique1.size(); i++){
       for (int j=0; j<nombres.size(); j++){
@@ -133,6 +140,7 @@ int main(){
         dGlobal, mGlobal, tGlobal-bGlobal+dGlobal);
         if (fileTest.getType() == 1){
         cout << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << endl;
+        archSalida << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << endl;
        totalLDC += fileTest.getT();
         }
         found= false;
@@ -140,8 +148,10 @@ int main(){
       iGlobal= mGlobal = tGlobal = dGlobal = bGlobal = 0;
     }
     cout << "------------------------------------------------" << endl;
+    archSalida << "------------------------------------------------" << endl;
 
     cout << "CLASES REUSADAS: " << endl;
+    archSalida << "CLASES REUSADAS: " << endl;
     for (int i=0; i<unique1.size(); i++){
       for (int j=0; j<nombres.size(); j++){
         if (unique1[i]==nombres[j]){
@@ -165,6 +175,8 @@ int main(){
         if (fileTest.getType() == 2){
         cout << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << 
       ", B=" << fileTest.getB()  << endl;
+        archSalida << "   " << nombres[iN] << ": T=" << fileTest.getT() <<", I=" << fileTest.getI() << 
+      ", B=" << fileTest.getB()  << endl;
        totalLDC += fileTest.getT();
         }
         found= false;
@@ -172,105 +184,12 @@ int main(){
       iGlobal= mGlobal = tGlobal = dGlobal = bGlobal = 0;
     }
      cout << "------------------------------------------------" << endl;
-     cout << "TOTAL DE LDC: " << totalLDC << endl;
+     cout << "TOTAL DE LDC= " << totalLDC << endl;
 
+     archSalida << "------------------------------------------------" << endl;
+     archSalida << "TOTAL DE LDC=" << totalLDC;
 
+     archSalida.close();
 
-
-
-  /*
-
-
-    for(int i=0; i<numArch; i++){
-      if (files[i].getType() == 0){
-      cout << "   " << nombres[i] << ": T=" << files[i].getT() <<", I=" << files[i].getI() << 
-      ", B= " << files[i].getB() << ", D=" << files[i].getD() << ", M="<< files[i].getM() << ", A=" 
-      << files[i].getA() << endl;
-      totalLDC += files[i].getT();
-      }
-    }
-     cout << "------------------------------------------------" << endl;
-    cout << "CLASES NUEVAS: " << endl;
-     for(int i=0; i<numArch; i++){
-     if (files[i].getType() == 1){
-      cout << "   " << nombres[i] << ": T=" << files[i].getT() <<", I=" << files[i].getI() << 
-      ", B= " << files[i].getB() << ", D=" << files[i].getD() << ", M="<< files[i].getM() << ", A=" 
-      << files[i].getA() << endl;
-      totalLDC += files[i].getT();
-     }
-    }
-    cout << "------------------------------------------------" << endl;
-    cout << "CLASES REUSADAS: " << endl;
-    for(int i=0; i<numArch; i++){
-     if (files[i].getType() == 2){
-      cout << "   " << nombres[i] << ": T=" << files[i].getT() <<", I=" << files[i].getI() << 
-      ", B= " << files[i].getB() << ", D=" << files[i].getD() << ", M="<< files[i].getM() << ", A=" 
-      << files[i].getA() << endl;
-      totalLDC += files[i].getT();
-     }
-    }
-        cout << "------------------------------------------------" << endl;
-       cout << "TOTAL DE LDC: " << totalLDC << endl;
-
-
-
-    
-
-    //for (int i=0; i<numArch; i++){
-
-      cin >> name;
-      NewBlank bc(name);
-      CommCount cc(name);
-      const char * c = name.c_str();
-      if (access( c, F_OK ) != 0){
-        cout << "El archivo no existe" << endl;
-        return 1;
-      }
-
-      char ch;
-      FILE *f = fopen(c, "r");
-      if(fscanf(f,"%c",&ch)==EOF)
-      {
-          cout << "El archivo está vacio" << endl;
-          return 1;
-      }
-      //cout << name << endl;
-      if(name.substr(name.find_last_of(".") + 1) != "txt"  && name.substr(name.find_last_of(".") + 1) != "src"
-      && name.substr(name.find_last_of(".") + 1) != "cpp" && name.substr(name.find_last_of(".") + 1) != "c"
-      && name.substr(name.find_last_of(".") + 1) != "h"){
-        cout << "El archivo no es .txt" << endl;
-        return 1;
-      }
-
-      fclose(f);
-
-
-     // int empty=0, code=0, comm=0, total=0;
-      empty = bc.CountEmptylines();
-      comm = cc.CountCommlines();
-      total = cc.getTotal();
-      code = total-comm-empty;
-      cout << "Nombre del archivo: " << name << endl;
-      cout << "------------------------------------------------" << endl;
-      cout << "Cantidad de líneas en blanco: " << empty << endl;
-      cout << "Cantidad de líneas con comentarios: " <<  comm << endl;
-      cout << "Cantidad de líneas con código: " << code << endl;
-      cout << "------------------------------------------------" << endl;
-      cout << "T: " << code << endl;
-      cout << "I: " << cc.getiCount() << endl;
-      cout << "B: " << cc.getbCount() << endl;
-      cout << "D: " << cc.getdCount() << endl;
-      cout << "M: " << cc.getmCount() << endl;
-      cout << "A: " << cc.getaCount(code) << endl;
-
-      //si m = 0, es reusada
-      // si b= 0, es nueva
-      cout << "------------------------------------------------" << endl;
-      cout << "Cantidad total de líneas: " <<  total << endl;
-
-
-  //  }
-
-  */
     return 0; 
 }
