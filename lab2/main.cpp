@@ -64,9 +64,9 @@ int main(){
     //sort(unique1.begin(), unique1.end());
     unique1.erase(unique(unique1.begin(), unique1.end()), unique1.end());
 
-    for (int i=0; i<unique1.size(); i++){
+   /* for (int i=0; i<unique1.size(); i++){
       cout << unique1[i] << endl;
-    }
+    } */
 
     int iGlobal, mGlobal, tGlobal, dGlobal, bGlobal;
     int iN=0;

@@ -45,19 +45,18 @@ class CommCount{
         while (getline(file,str)){
             if (str.find("/*") != string::npos){
                 comTotal++;
-               // cout << str << endl;   
+              //  cout << "found" << endl;   
                 while (str.find("*/") == string::npos){
                     if(count!=0){
+                    cout << str << endl;
                     comTotal++;
-            //        cout << str << endl;
                     sameLine=false;
                     }
                     getline(file,str) ;
                     count++;
-
                 }
                 count=0;
-                if (!sameLine){
+                if (!sameLine || str.find("*/") != string::npos){
                 comTotal++;
        //         cout << str << endl;
                 sameLine=true;
@@ -65,8 +64,10 @@ class CommCount{
 
             }
             
-            else if ( str.find("*/") != string::npos){
+          else    if ( str.find("*/") != string::npos){
                 comTotal++;
+
+                         //       cout << "foundClose" << endl;
                              //   cout << str << endl;
 
            } 
@@ -107,7 +108,6 @@ class CommCount{
 				        numStr.push_back(str[numContainer]);
 				        numContainer++;
 			        }
-                    
                     deletedCount = stoi(numStr);
                     deletedCountGlobal += deletedCount;
                 }
