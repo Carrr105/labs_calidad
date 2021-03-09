@@ -1,4 +1,4 @@
-//.b=40
+//.b=34
 #include <fstream>
 #include <stdlib.h>
 #include <stdio.h>  
@@ -38,7 +38,8 @@ class BlankCount{
             }
         }
         char charFinal = pointer[strlen(pointer)-1]; //obtengo el ultimo caracter
-        if (charFinal=='\n' || !isLast )  total++; // checo si hay una linea extra
+        if (charFinal=='\n' || !isLast )  
+        total++; // checo si hay una linea extra
         fclose(file);
         return total;
     }

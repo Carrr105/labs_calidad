@@ -41,13 +41,13 @@ class NewBlank{
 
             if (*pointer=='}' || *pointer=='{'){
                 pointer++;
-                if (*pointer=='\r'){
+                if (*pointer=='\r' || *pointer=='\n'){
                         total++;
 
                 }
                 if (*pointer==';'){
                     pointer++;
-                    if (*pointer=='\r'){
+                    if (*pointer=='\r' || *pointer=='\n'){
                         total++;
 
                     }
