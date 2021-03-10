@@ -1,10 +1,12 @@
 CLASES BASE: 
+   main: T=185, I=0, B=41, D=12, M=2, A=156
+   CommCount: T=107, I=10, B=43, D=1, M=1, A=65
 ------------------------------------------------
 CLASES NUEVAS: 
+   FileCount: T=47, I=9
+   NewBlank: T=37, I=3
 ------------------------------------------------
 CLASES REUSADAS: 
-   1BlankCount: T=33, I=0, B=33
-   1CommCount: T=33, I=0, B=33
-   1main: T=37, I=0, B=37
+   BlankCount: T=34, I=3, B=34
 ------------------------------------------------
-TOTAL DE LDC=103
+TOTAL DE LDC=410

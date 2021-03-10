@@ -3,8 +3,8 @@ CLASES BASE:
 CLASES NUEVAS: 
 ------------------------------------------------
 CLASES REUSADAS: 
-   1BlankCount: T=33, I=0, B=33
-   1CommCount: T=33, I=0, B=33
-   1main: T=37, I=0, B=37
+   BlankCount: T=33, I=0, B=33
+   CommCount: T=33, I=0, B=33
+   main: T=37, I=0, B=37
 ------------------------------------------------
 TOTAL DE LDC=103
