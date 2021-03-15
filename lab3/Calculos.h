@@ -6,14 +6,14 @@ using namespace std;
 
 class Calculos{
     private:
-    int N;
-    double xk, r, r2, b0, b1, yk;
-    double sumXY, sumX, sumY, avgX, avgY, sumX2, sumY2, avgX2;
+    int N, xk;
+    double r, r2, b0, b1, yk;
+    double sumXY, sumX, sumY, avgX, avgY, sumX2, sumY2;
     
     public:
     Calculos(){
-        N = 0;
-        //xk = r = r2 = b0 = b1 = yk = 0;
+        xk = N = 0;
+        r = r2 = b0 = b1 = yk = 0; 
         sumXY=0;
         sumX = 0;
         sumY = 0;
@@ -21,7 +21,6 @@ class Calculos{
         avgY = 0;
         sumX2 = 0;
         sumY2 = 0;
-        avgX2 = 0;
     }
 
     void calculaYMuestra(double xkRecibido, vector<double> x, vector<double> y){
@@ -44,7 +43,8 @@ class Calculos{
         */
 
         xk = xkRecibido;
-        N = x.size();
+        int Naux = x.size();
+        N = static_cast<double>(Naux);
         sumXY = getSumXY(x,y);
         sumX = getSumV(x);
         sumY = getSumV(y);
@@ -52,7 +52,6 @@ class Calculos{
         sumY2 = getSumSquared(y);
         avgX = sumX/x.size();
         avgY = sumY/y.size();
-        avgX2 = sumX2/x.size();
 
         b1 = getB1();
         b0 = avgY-(b1*avgX);
@@ -89,13 +88,13 @@ class Calculos{
     }
 
     double getB1(){
-        cout << "xd: " << sumXY-(N*avgX*avgY) << endl;
+    /*    cout << "xd: " << sumXY-(N*avgX*avgY) << endl;
         cout << "under: " << (sumX2-(N*avgX2)) << endl;
 
         cout << "sumX2: " << sumX2 << endl;
-        cout << "avgX2: " << avgX2 << endl;
+        cout << "avgX2: " << avgX2 << endl; */
         
-        return (sumXY-(N*avgX*avgY))/ (sumX2-(N*avgX2));
+        return (sumXY-N*avgX*avgY) / (sumX2-N*avgX*avgX);
     }
 
     double getR(){
@@ -112,13 +111,13 @@ class Calculos{
     }
 
     void imprimir(){
-        cout << "N = " << N << endl;
+        cout << "N  = " << N << endl;
         cout << "xk = " << xk << endl;
-        cout << "r = " << r << endl;
-        cout << "r2 = " << r2 << endl;
-        cout << "b0 = " << b0 << endl;
-        cout << "b1 = " << b1 << endl;
-        cout << "yk = " << yk << endl;
+        printf("r  = %.5f \n", r);
+        printf("r2 = %.5f \n", r2);
+        printf("b0 = %.5f \n", b0);
+        printf("b1 = %.5f \n", b1);
+        printf("yk = %.5f \n", yk);
     }
 
 

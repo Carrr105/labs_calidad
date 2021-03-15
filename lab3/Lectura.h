@@ -33,7 +33,7 @@ class Lectura{
                     numContainer++;
                 }
                 try {
-                    xk = stod(numStr);
+                    xk = stoi(numStr);
                    // cout << xk << endl;
                     isFirstLine = false;
                 }
