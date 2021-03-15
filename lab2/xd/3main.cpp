@@ -1,4 +1,4 @@
-//.b=185
+//.b=41
 // Carlos Gerardo Herrera Cortina  A00821946
 // Programa 3.
 #include <iostream>
