@@ -12,19 +12,30 @@ class Lectura{
     bool isFirstLine;
 
     public:
-    Lectura(){
+    Lectura();
+    int lee(string);
+    vector<double> regresaX();
+    vector<double> regresaY();
+    double regresaXK();
+};
+
+    //.i
+    Lectura::Lectura(){
         name = "";
-        xk=0;
+        xk=0.0;
         nCurrent=0;
         isFirstLine=true;
     }
 
-    void lee(string fileName){
+    //.i
+    int Lectura::lee(string fileName){
         name = fileName;
         ifstream file (name);
         string str;
         string numStr = "";
         size_t numContainer = 0;
+        int xCount = 0;
+        int yCount = 0;
         while (getline(file,str)){
             if (isFirstLine){
                 numStr = "";
@@ -33,14 +44,13 @@ class Lectura{
                     numContainer++;
                 }
                 try {
-                    xk = stoi(numStr);
-                   // cout << xk << endl;
+                    xk = stod(numStr);
                     isFirstLine = false;
                 }
                 catch(exception e){
-                    cout << "Se encontró algo que no es digíto" << endl;
+                    cout << "Se encontró un xk que no es un número real >= 0" << endl;
                     file.close();
-                    return;
+                    return 1;
                 }
             }
             else{
@@ -52,13 +62,13 @@ class Lectura{
                 try {
                     nCurrent = stod(numStr);
                     x.push_back(nCurrent);
-                   // cout << "x: " << x[9] << endl;
                     numContainer++;
+                    xCount++;
                 }
                 catch(exception e){
-                    cout << "Se encontró algo que no es digíto" << endl;
+                    cout << "Se encontró un valor que no es un número real >= 0 en el par número " << xCount << endl;
                     file.close();
-                    return;
+                    return 1;
                 }
                 numStr = "";
                 while (isdigit(str[numContainer]) || str[numContainer] == '.') {
@@ -68,31 +78,32 @@ class Lectura{
                 try {
                     nCurrent = stod(numStr);
                     y.push_back(nCurrent);
-                   // cout << "y: " << y[9] << endl;
-                    //cout << numStr << endl;
                     numContainer++;
+                    yCount++;
                 }
                 catch(exception e){
-                    cout << "Se encontró algo que no es digíto" << endl;
+                    cout << "Se encontró un valor que no es un número real >= 0 en el par número " << yCount << endl;
                     file.close();
-                    return;
+                    return 1;
                 }
                 
             }
             numContainer = 0;
         }
+        return 0;
     }
 
-    vector<double> regresaX(){
+    //.i
+    vector<double> Lectura::regresaX(){
         return x;
     }
 
-    vector<double> regresaY(){
+    //.i
+    vector<double> Lectura::regresaY(){
         return y;
     }
 
-    double regresaXK(){
+    //.i
+    double Lectura::regresaXK(){
         return xk;
     }
-
-};

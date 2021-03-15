@@ -1,9 +1,9 @@
 //.b=41
 // Carlos Gerardo Herrera Cortina  A00821946
-// Programa 2.
+// Programa 3.
 #include <iostream>
 #include <vector>
-#include <algorithm>
+//.d=1
 #include <fstream>
 #include <unistd.h> // validacion de existencia de archivo
 // incluyo clases
@@ -39,8 +39,8 @@ int main(){
     if(name.substr(name.find_last_of(".") + 1) != "txt" && name.substr(name.find_last_of(".") + 1) != "src"
        && name.substr(name.find_last_of(".") + 1) != "rtf" && name.substr(name.find_last_of(".") + 1) != "cpp"
        && name.substr(name.find_last_of(".") + 1) != "c" && name.substr(name.find_last_of(".") + 1) != "h"
-       && name.substr(name.find_last_of(".") + 1) != "java"){ //.m
-      cout << "El archivo no es compatible" << endl; //.m
+       && name.substr(name.find_last_of(".") + 1) != "java"){
+      cout << "El archivo no es compatible" << endl;
       return 1;
     }
 
@@ -48,7 +48,9 @@ int main(){
 
     Lectura lect;
     Calculos calc;
-    lect.lee(name);
+    if (lect.lee(name) == 1){
+      return 1;
+    }
     x = lect.regresaX();
     y = lect.regresaY();
     xk = lect.regresaXK();

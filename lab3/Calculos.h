@@ -6,14 +6,28 @@ using namespace std;
 
 class Calculos{
     private:
-    int N, xk;
-    double r, r2, b0, b1, yk;
+    int N;
+    double xk, r, r2, b0, b1, yk;
     double sumXY, sumX, sumY, avgX, avgY, sumX2, sumY2;
     
     public:
-    Calculos(){
-        xk = N = 0;
-        r = r2 = b0 = b1 = yk = 0; 
+    Calculos();
+    void calculaYMuestra(double, vector<double>, vector<double>);
+    double getSumXY(vector<double>, vector<double>);
+    double getSumV(vector<double>);
+    double getSumSquared(vector<double>);
+    double getB1();
+    double getR();
+    void imprimir();
+    int validaciones(vector<double>, vector<double>);
+
+};
+
+
+    //.i
+    Calculos::Calculos(){
+        N = 0;
+        xk = r = r2 = b0 = b1 = yk = 0.0; 
         sumXY=0;
         sumX = 0;
         sumY = 0;
@@ -23,28 +37,19 @@ class Calculos{
         sumY2 = 0;
     }
 
-    void calculaYMuestra(double xkRecibido, vector<double> x, vector<double> y){
-        if (x.size() != y.size() ){
-            cout << "No se recibieron el mismo numero de pares de x, y" << endl;
-            return;
-        }
-        if (x.size() == 0 && y.size() == 0){
-            cout << "No hay datos" << endl;
-            return;
-        }
-        /*
-        for (int i=0; i<x.size(); i++){
-            cout << "x[" << i << "] = " << x[i] << endl;
-        }
-
-        for (int i=0; i<y.size(); i++){
-            cout << "y[" << i << "] = " << y[i] << endl;
-        }
-        */
-
+    //.i
+    void Calculos::calculaYMuestra(double xkRecibido, vector<double> x, vector<double> y){
         xk = xkRecibido;
-        int Naux = x.size();
-        N = static_cast<double>(Naux);
+
+        int resultadoValidaciones = 0;
+        resultadoValidaciones = validaciones(x, y);
+        if (resultadoValidaciones==1){ // validacion regresa 1 si hay un error, 0 si no lo hay
+            return;
+        }
+
+
+        
+        N = x.size();
         sumXY = getSumXY(x,y);
         sumX = getSumV(x);
         sumY = getSumV(y);
@@ -63,7 +68,8 @@ class Calculos{
 
     }
 
-    double getSumXY(vector<double> x, vector<double> y ){
+    //.i
+    double Calculos::getSumXY(vector<double> x, vector<double> y ){
         double suma=0;
         for (int i=0; i<x.size(); i++){
             suma+=x[i]*y[i];
@@ -71,7 +77,8 @@ class Calculos{
         return suma;
     }
 
-    double getSumV(vector<double> v ){
+    //.i
+    double Calculos::getSumV(vector<double> v ){
         double suma=0;
         for (int i=0; i<v.size(); i++){
             suma+=v[i];
@@ -79,7 +86,8 @@ class Calculos{
         return suma;
     }
 
-    double getSumSquared(vector<double> v ){
+    //.i
+    double Calculos::getSumSquared(vector<double> v ){
         double suma=0;
         for (int i=0; i<v.size(); i++){
             suma+=(v[i]*v[i]);
@@ -87,30 +95,19 @@ class Calculos{
         return suma;
     }
 
-    double getB1(){
-    /*    cout << "xd: " << sumXY-(N*avgX*avgY) << endl;
-        cout << "under: " << (sumX2-(N*avgX2)) << endl;
-
-        cout << "sumX2: " << sumX2 << endl;
-        cout << "avgX2: " << avgX2 << endl; */
-        
+    //.i
+    double Calculos::getB1(){  
         return (sumXY-N*avgX*avgY) / (sumX2-N*avgX*avgX);
     }
 
-    double getR(){
+    //.i
+    double Calculos::getR(){
         double under = (N*sumX2-(sumX*sumX)) * (N*sumY2-(sumY*sumY));
-   /*     cout << "sumXY: " << sumXY << endl;
-        cout << "sumX2: " << sumX2 << endl;
-        cout << "sumX: " << sumX << endl;
-        cout << "sumY2: " << sumY << endl;
-        cout << "sumY: " << sumY << endl;
-        cout << "under: " << under << endl; 
-        double raiz = sqrt(under);
-        cout << "raiz: " << raiz << endl; */
         return (N*sumXY-sumX*sumY) /  sqrt( under  );
     }
 
-    void imprimir(){
+    //.i
+    void Calculos::imprimir(){
         cout << "N  = " << N << endl;
         cout << "xk = " << xk << endl;
         printf("r  = %.5f \n", r);
@@ -120,7 +117,45 @@ class Calculos{
         printf("yk = %.5f \n", yk);
     }
 
+    //.i
+    int Calculos::validaciones(vector<double> x, vector<double> y){
+        if (x.size() != y.size() ){
+            cout << "No se recibieron el mismo numero de pares de x, y" << endl;
+            return 1;
+        }
+        if (x.size() == 0 && y.size() == 0){
+            cout << "No hay datos" << endl;
+            return 1;
+        }
+        if (x.size()< 0){
+            cout << "Numero de datos de x incorrecto." << endl;
+            return 1;
+        }
+        if (y.size() < 0){
+            cout << "Numero de datos de y incorrecto." << endl;
+            return 1;
+        }
 
+        if (xk < 0 ){
+            cout << "Error en valor de xk. Es menor a 0" << endl;
+            return 1;
+        }
 
+        bool error = false;
 
-};
+        for (int i=0; i<x.size(); i++){
+            if (x[i]<0){
+                cout << "Error en x[" << i << "] = " << x[i] << " --- Valor menor a 0" << endl;
+                error = true;
+            }
+            if (y[i]<0){
+                cout << "Error en y[" << i << "] = " << y[i] << " --- Valor menor a 0" << endl;
+                error = true;
+            }
+        }
+        if (error){
+            cout << "Terminando programa." << endl;
+            return 1;
+        }
+        return 0;
+    }
