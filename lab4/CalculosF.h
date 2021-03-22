@@ -13,15 +13,18 @@ class CalculosF{
     double getGammaDouble(double);
 };
 
+//.i
 CalculosF::CalculosF(double dofRec, double xRec){
     dof = dofRec;
     x = xRec;
 }
 
+//.i
 double CalculosF::getF(double x){
     return  ( ( getGamma((dof+1.0)/2.0 ) ) / (sqrt(dof*2*acos(0.0)) * getGamma(dof / 2.0)) ) * pow(1.0+(  (x*x)/dof  ), -(dof+1.0)/2.0);
 }
 
+//.i
 double CalculosF::getGamma(double x){
     if (floor(x)==x){
         return getGammaInt(x-1);
@@ -31,6 +34,7 @@ double CalculosF::getGamma(double x){
     }
 }
 
+//.i
 double CalculosF::getGammaInt(double x){
     if(x > 1){
         return x * getGammaInt(x - 1);
@@ -40,7 +44,7 @@ double CalculosF::getGammaInt(double x){
     }
 }
 
-
+//.i
 double CalculosF::getGammaDouble(double x){
     if (x==1){
         return 1;

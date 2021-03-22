@@ -1,6 +1,5 @@
 #include <iostream>
 #include "CalculosF.h"
-using namespace std;
 
 class Simpson{
     private:
@@ -12,6 +11,7 @@ class Simpson{
 
 };
 
+//.i
 Simpson::Simpson(double xRec, double dofRec){
     E = 0.0001;
     numSeg = 2.0;
@@ -21,6 +21,7 @@ Simpson::Simpson(double xRec, double dofRec){
     W = x/numSeg;
 }
 
+//.i
 void Simpson::calcSimpson(){
     CalculosF calc(dof, x);
     double sumaPares, sumaImpares, p1, p2;
@@ -64,7 +65,7 @@ void Simpson::calcSimpson(){
         printf("  p = %.5f \n", p);
     }
     else{
-        cout << "error. terminando programa " << endl;
+        cout << "Error. terminando programa " << endl;
     }
 
 }
