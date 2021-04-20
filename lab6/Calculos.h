@@ -20,7 +20,6 @@ class Calculos{
     double getB1();
     double getR();
     void imprimir();
-    int validaciones(vector<double>, vector<double>);
     double getSignificance();
     double getX(double, double);
     double stdDev(vector<double>, vector<double>);
@@ -45,14 +44,6 @@ class Calculos{
     void Calculos::calculaYMuestra(double xkRecibido, vector<double> x, vector<double> y){
         xk = xkRecibido;
 
-        int resultadoValidaciones = 0;
-        resultadoValidaciones = validaciones(x, y);
-        if (resultadoValidaciones==1){ // validacion regresa 1 si hay un error, 0 si no lo hay
-            return;
-        }
-
-
-        
         N = x.size();
         sumXY = getSumXY(x,y);
         sumX = getSumV(x);
@@ -132,48 +123,6 @@ class Calculos{
         }
     }
 
-    //.i
-    int Calculos::validaciones(vector<double> x, vector<double> y){
-        if (x.size() != y.size() ){
-            cout << "No se recibieron el mismo numero de pares de x, y" << endl;
-            return 1;
-        }
-        if (x.size() == 0 && y.size() == 0){
-            cout << "No hay datos" << endl;
-            return 1;
-        }
-        if (x.size()< 0){
-            cout << "Numero de datos de x incorrecto." << endl;
-            return 1;
-        }
-        if (y.size() < 0){
-            cout << "Numero de datos de y incorrecto." << endl;
-            return 1;
-        }
-
-        if (xk < 0 ){
-            cout << "Error en valor de xk. Es menor a 0" << endl;
-            return 1;
-        }
-
-        bool error = false;
-
-        for (int i=0; i<x.size(); i++){
-            if (x[i]<0){
-                cout << "Error en x[" << i << "] = " << x[i] << " --- Valor menor a 0" << endl;
-                error = true;
-            }
-            if (y[i]<0){
-                cout << "Error en y[" << i << "] = " << y[i] << " --- Valor menor a 0" << endl;
-                error = true;
-            }
-        }
-        if (error){
-            cout << "Terminando programa." << endl;
-            return 1;
-        }
-        return 0;
-    }
 
     //.i
     double Calculos:: getSignificance(){
