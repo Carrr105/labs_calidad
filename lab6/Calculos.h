@@ -1,3 +1,4 @@
+//.b=106
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -20,6 +21,7 @@ class Calculos{
     double getB1();
     double getR();
     void imprimir();
+    //.d=1
     double getSignificance();
     double getX(double, double);
     double stdDev(vector<double>, vector<double>);
@@ -102,6 +104,8 @@ class Calculos{
         double under = (N*sumX2-(sumX*sumX)) * (N*sumY2-(sumY*sumY));
         return (N*sumXY-sumX*sumY) /  sqrt( under  );
     }
+
+    //.d=28
 
     //.i
     void Calculos::imprimir(){

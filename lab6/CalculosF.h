@@ -1,4 +1,4 @@
-//.b=
+//.b=32
 #include <math.h>
 using namespace std;
 

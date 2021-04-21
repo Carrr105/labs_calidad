@@ -1,10 +1,12 @@
 CLASES BASE: 
-   5main: T=53, I=1, B=25, D=0, M=4, A=28
-   5Simpson: T=55, I=3, B=47, D=11, M=5, A=19
+   6Calculos: T=135, I=12, B=106, D=29, M=0, A=58
 ------------------------------------------------
 CLASES NUEVAS: 
 ------------------------------------------------
 CLASES REUSADAS: 
-   5CalculosF: T=32, I=5, B=32
+   6Lectura: T=79, I=5, B=79
+   6main: T=39, I=0, B=39
+   6CalculosF: T=32, I=5, B=32
+   6Simpson: T=55, I=3, B=55
 ------------------------------------------------
-TOTAL DE LDC=140
+TOTAL DE LDC=340
