@@ -9,8 +9,8 @@
 class Calculos{
     private:
     int N;
-    double wk, xk, yk, zk, r, r2, b0, b1, b2, b3, sig, ran; //.m
-    double sumXY, sumW, sumX, sumY, sumZ, avgX, avgY, sumX2, sumY2, sumW2;
+    double wk, xk, yk, b0, b1, b2, b3; //.m
+    double sumW, sumX, sumY, sumZ; //.m
     
     public:
     Calculos();
@@ -27,16 +27,13 @@ class Calculos{
     //.i
     Calculos::Calculos(){
         N = 0;
-        wk = xk = r = r2 = b0 = b1 = b2 = b3 = yk = sig = ran = 0.0; 
-        sumXY=0;
+        wk = xk = b0 = b1 = b2 = b3 = yk = 0.0;  //.m
+        //.d=1
         sumX = 0;
         sumY = 0;
         sumW = 0;
         sumZ = 0;
-        avgX = 0;
-        avgY = 0;
-        sumX2 = 0;
-        sumY2 = 0;
+        //.d=4
     }
 
     //.i

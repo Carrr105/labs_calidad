@@ -1,6 +1,6 @@
 CLASES BASE: 
-   main: T=36, I=0, B=37, D=5, M=3, A=4
-   Calculos: T=93, I=6, B=135, D=74, M=3, A=32
+   main: T=36, I=1, B=37, D=5, M=3, A=4
+   Calculos: T=88, I=6, B=135, D=79, M=5, A=32
    Lectura: T=142, I=9, B=79, D=1, M=6, A=64
 ------------------------------------------------
 CLASES NUEVAS: 
@@ -8,4 +8,4 @@ CLASES NUEVAS:
 ------------------------------------------------
 CLASES REUSADAS: 
 ------------------------------------------------
-TOTAL DE LDC=317
+TOTAL DE LDC=312

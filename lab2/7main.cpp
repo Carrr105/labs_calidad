@@ -9,7 +9,7 @@
 #include "Lectura.h"
 //.d=1
 
-
+//.i
 int main(){
     vector<double> w, x, y, z; //.m
     double wk, xk, yk;
