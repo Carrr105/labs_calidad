@@ -4,7 +4,7 @@
 #include <vector>
 #include <math.h>
 #include "GJordan.h"
-using namespace std;
+//.d=1
 
 class Calculos{
     private:

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include <iostream>
+//.d=1
 using namespace std;
 
 class Lectura{

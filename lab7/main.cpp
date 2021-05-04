@@ -1,15 +1,13 @@
 //.b=37
 // Carlos Gerardo Herrera Cortina  A00821946
 // Programa 7.
-#include <iostream>
-#include <vector>
-#include <fstream>
+//.d=3
 #include <unistd.h> // validacion de existencia de archivo
+//.d=1
 // incluyo clases
-#include <fstream> // manejo de archivos
 #include "Calculos.h"
 #include "Lectura.h"
-using namespace std;
+//.d=1
 
 
 int main(){
