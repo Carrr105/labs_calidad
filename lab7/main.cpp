@@ -33,11 +33,9 @@ int main(){
     }
 
     if(name.substr(name.find_last_of(".") + 1) != "txt" && name.substr(name.find_last_of(".") + 1) != "src"
-       && name.substr(name.find_last_of(".") + 1) != "rtf" && name.substr(name.find_last_of(".") + 1) != "cpp"
-       && name.substr(name.find_last_of(".") + 1) != "c" && name.substr(name.find_last_of(".") + 1) != "h"
-       && name.substr(name.find_last_of(".") + 1) != "java"){
-      cout << "El archivo no es compatible" << endl;
-      return 1;
+       && name.substr(name.find_last_of(".") + 1) != "rtf"){ //.m
+       cout << "El archivo no es compatible" << endl;
+       return 1;
     }
 
     fclose(f);
