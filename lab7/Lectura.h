@@ -124,7 +124,7 @@ class Lectura{
                     xCount++;  //.m
                 }
                 catch(exception e){
-                    cout << "Se encontró un valor que no es un número real >= 0 en el par número " << xCount << endl;  //.m
+                    cout << "Se encontró un valor que no es un número real >= 0 en el cuádruplo número " << xCount << endl;  //.m
                     file.close();
                     return 1;
                 }
@@ -141,7 +141,7 @@ class Lectura{
                     yCount++;
                 }
                 catch(exception e){
-                    cout << "Se encontró un valor que no es un número real >= 0 en el par número " << yCount << endl;
+                    cout << "Se encontró un valor que no es un número real >= 0 en el cuádruplo número " << yCount << endl;
                     file.close();
                     return 1;
                 }
